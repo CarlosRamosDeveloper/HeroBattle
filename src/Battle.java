@@ -3,8 +3,8 @@ public class Battle {
         int round = 1;
         do {
             System.out.println("Ronda nº"+round);
-            heroB.reciveDamage(heroA.attack());
-            heroA.reciveDamage(heroB.attack());
+            heroB.receiveDamage(heroA.attack());
+            heroA.receiveDamage(heroB.attack());
             round++;
             System.out.println(heroA);
             System.out.println(heroB);

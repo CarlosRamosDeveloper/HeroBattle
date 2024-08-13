@@ -8,6 +8,7 @@ public class Hero {
     private int actualHealthPoints;
     private int dodgeRating;
     private int criticalRate;
+    private int hitRate;
     private boolean isAlive;
     private boolean hasDodged;
     private boolean hasDeliveredCritical;
@@ -21,6 +22,7 @@ public class Hero {
         this.actualHealthPoints = maxHealthPoints;
         this.dodgeRating = dodgeRating;
         this.criticalRate = criticalRate;
+        this.hitRate = 5;
         this.isAlive = true;
         this.hasDodged = false;
         this.hasDeliveredCritical = false;
@@ -79,6 +81,22 @@ public class Hero {
         this.criticalRate = criticalRate;
     }
 
+    public int getHitRate() {
+        return hitRate;
+    }
+
+    public void setHitRate(int hitRate) {
+        this.hitRate = hitRate;
+    }
+
+    public void addHitRate(int hitRate) {
+        this.hitRate += hitRate;
+    }
+
+    public void substractHitRate(int hitRate) {
+        this.hitRate -= hitRate;
+    }
+
     public boolean isAlive() {
         return isAlive;
     }
@@ -113,12 +131,26 @@ public class Hero {
 
     public int attack() {
         Random randomNumberGenerator = new Random();
+        int hitRoll = randomNumberGenerator.nextInt(100)+1;
         int damageRoll = randomNumberGenerator.nextInt(1+maxDamage-minDamage)+minDamage;
+        System.out.println("Roll hit: "+hitRoll);
         System.out.println("Roll daño: "+damageRoll);
-        return damageRoll;
+        if (hitRoll>=(100-criticalRate)) {
+            System.out.println(name+" ha conectado un golpe crítico!");
+            return damageRoll*2;
+        } else if (hitRoll<hitRate) {
+            System.out.println(name+" ha fallado el ataque!");
+            return 0;
+        } else if (hitRoll<hitRate+5){
+            System.out.println(name+" golpea de refilón!");
+            return minDamage;
+        } else {
+            System.out.println(name+" impacta en el objetivo");
+            return damageRoll;
+        }
     }
 
-    public void reciveDamage(int damage) {
+    public void receiveDamage(int damage) {
         this.actualHealthPoints -=damage;
         if(actualHealthPoints<=0) {
             this.kill();

@@ -3,8 +3,8 @@
 public class Main {
     public static void main(String[] args) {
 
-        Hero testSubjectA = new Hero("A", 7,10,5,5);
-        Hero testSubjectB = new Hero("B", 3,8,1,10);
+        Hero testSubjectA = new Hero("A", 7,100,5,5);
+        Hero testSubjectB = new Hero("B", 3,80,1,10);
 
         System.out.println(testSubjectA);
         System.out.println(testSubjectB);
