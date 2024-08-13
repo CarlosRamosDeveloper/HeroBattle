@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Hero {
     private String name;
     private int minDamage;
@@ -107,6 +109,26 @@ public class Hero {
 
     public void setStunned(boolean stunned) {
         isStunned = stunned;
+    }
+
+    public int attack() {
+        Random randomNumberGenerator = new Random();
+        int damageRoll = randomNumberGenerator.nextInt(1+maxDamage-minDamage)+minDamage;
+        System.out.println("Roll daño: "+damageRoll);
+        return damageRoll;
+    }
+
+    public void reciveDamage(int damage) {
+        this.actualHealthPoints -=damage;
+    }
+
+    public void heal(int heal) {
+        System.out.println("Sanación de "+heal);
+        this.actualHealthPoints += heal;
+        if (actualHealthPoints > maxHealthPoints) {
+            System.out.println("Salud al máximo");
+            this.actualHealthPoints = maxHealthPoints;
+        }
     }
 
     @Override
