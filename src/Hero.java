@@ -135,7 +135,7 @@ public class Hero {
         int damageRoll = randomNumberGenerator.nextInt(1+maxDamage-minDamage)+minDamage;
         System.out.println("Roll hit: "+hitRoll);
         System.out.println("Roll daño: "+damageRoll);
-        if (hitRoll>=(100-criticalRate)) {
+        if (hitRoll > (100-criticalRate)) {
             System.out.println(name+" ha conectado un golpe crítico!");
             return damageRoll*2;
         } else if (hitRoll<hitRate) {
@@ -151,9 +151,16 @@ public class Hero {
     }
 
     public void receiveDamage(int damage) {
-        this.actualHealthPoints -=damage;
-        if(actualHealthPoints<=0) {
-            this.kill();
+        Random randomNumberGenerator = new Random();
+        int dodgeRoll = randomNumberGenerator.nextInt(100)+1;
+        System.out.println("Roll de esquiva de "+name+": "+dodgeRoll);
+        if (dodgeRoll > 100-dodgeRating) {
+            System.out.println(name+" ha esquivado el golpe!");
+        } else {
+            this.actualHealthPoints -=damage;
+            if(actualHealthPoints<=0) {
+                this.kill();
+            }
         }
     }
 
