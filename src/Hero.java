@@ -1,15 +1,15 @@
 public class Hero {
-    String name;
-    int minDamage;
-    int maxDamage;
-    int maxHealthPoints;
-    int actualHealthPoints;
-    int dodgeRating;
-    int criticalRate;
-    boolean isAlive;
-    boolean hasDodged;
-    boolean hasDeliveredCritical;
-    boolean isStunned;
+    private String name;
+    private int minDamage;
+    private int maxDamage;
+    private int maxHealthPoints;
+    private int actualHealthPoints;
+    private int dodgeRating;
+    private int criticalRate;
+    private boolean isAlive;
+    private boolean hasDodged;
+    private boolean hasDeliveredCritical;
+    private boolean isStunned;
 
     public Hero(String name, int maxDamage, int maxHealthPoints, int dodgeRating, int criticalRate) {
         this.name = name;
@@ -107,5 +107,19 @@ public class Hero {
 
     public void setStunned(boolean stunned) {
         isStunned = stunned;
+    }
+
+    @Override
+    public String toString(){
+        String message = "Nombre: "+name+"\nSalud: "+actualHealthPoints+"/"+maxHealthPoints;
+        if (!isAlive || isStunned) {
+            message += "\nEstado: ";
+            if (!isAlive) {
+                message +="Muerto";
+            } else {
+                message += "Aturdido";
+            }
+        }
+        return message;
     }
 }
