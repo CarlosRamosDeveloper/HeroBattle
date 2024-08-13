@@ -9,11 +9,6 @@ public class Main {
         System.out.println(testSubjectA);
         System.out.println(testSubjectB);
 
-        testSubjectB.reciveDamage(testSubjectA.attack());
-        System.out.println(testSubjectB);
-        testSubjectB.heal(2);
-        testSubjectA.heal(5);
-        System.out.println(testSubjectA);
-        System.out.println(testSubjectB);
+        Battle.start(testSubjectA,testSubjectB);
     }
 }

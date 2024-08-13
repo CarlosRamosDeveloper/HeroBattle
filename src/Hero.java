@@ -120,6 +120,9 @@ public class Hero {
 
     public void reciveDamage(int damage) {
         this.actualHealthPoints -=damage;
+        if(actualHealthPoints<=0) {
+            this.kill();
+        }
     }
 
     public void heal(int heal) {
